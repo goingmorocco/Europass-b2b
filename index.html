@@ -1,4 +1,24 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style>
+/* Formular: Telefon + Auswahl Arbeit/Ausbildung */
+.opt { font-weight: 400; color: var(--muted); }
+.field input[type="tel"] { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #B9C3D3; border-radius: 2px; background: var(--white); font-size: 1rem; color: var(--ink); transition: border-color .2s, box-shadow .2s; }
+.field input[type="tel"]:hover { border-color: #8D9AB0; }
+.field input[type="tel"]:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,48,148,0.18); }
+.choice { border: 0; margin: 0; padding: 0; min-width: 0; }
+.choice legend { padding: 0; margin-bottom: 6px; font-size: 0.875rem; font-weight: 600; }
+.choice__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.choice__item { position: relative; display: block; cursor: pointer; }
+.choice__item input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.choice__item span { display: grid; gap: 2px; min-height: 64px; padding: 12px 14px; border: 1px solid #B9C3D3; border-radius: 2px; font-size: 0.8125rem; color: var(--muted); line-height: 1.35; transition: border-color .2s, background-color .2s, box-shadow .2s; }
+.choice__item strong { font-size: 1rem; color: var(--ink); font-weight: 600; }
+.choice__item:hover span { border-color: #8D9AB0; }
+.choice__item input:checked + span { border-color: var(--blue); background: var(--blue-tint); box-shadow: inset 0 0 0 1px var(--blue); }
+.choice__item input:checked + span strong { color: var(--blue); }
+.choice__item input:focus-visible + span { outline: 3px solid var(--red); outline-offset: 2px; }
+.choice.is-invalid .choice__item span { border-color: var(--red); }
+@media (max-width: 640px) { .choice__row { grid-template-columns: minmax(0, 1fr); } .choice__item span { min-height: 0; } }
+</style>
+</head><body>
 <title>Europass Academy Landingpage</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Europass Academy ist Ihr Bildungs- und Vorbereitungspartner in Marokko: Kandidatenauswahl, Deutsch A1–B2, berufliche Vorbereitung und persönliche Begleitung für deutsche Arbeitgeber.">
@@ -495,11 +515,24 @@
             <input id="f-ansprechpartner" name="ansprechpartner" type="text" autocomplete="name" required maxlength="120">
             <p class="field__error" id="f-ansprechpartner-err">Bitte geben Sie Ihren Namen an.</p>
           </div>
-          <div class="field field--full">
+          <div class="field">
             <label for="f-email">Geschäftliche E-Mail <span class="req" aria-hidden="true">*</span></label>
             <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="160" placeholder="name@unternehmen.de">
             <p class="field__error" id="f-email-err">Bitte geben Sie eine gültige E-Mail-Adresse an.</p>
           </div>
+          <div class="field">
+            <label for="f-telefon">Telefonnummer <span class="opt">(optional)</span></label>
+            <input id="f-telefon" name="telefon" type="tel" autocomplete="tel" maxlength="40" placeholder="+49 …">
+          </div>
+          <fieldset class="field field--full choice">
+            <legend>Sie suchen <span class="req" aria-hidden="true">*</span></legend>
+            <div class="choice__row">
+              <label class="choice__item" for="f-suche-1"><input id="f-suche-1" type="radio" name="gesucht" value="Fachkräfte (Arbeit)" required><span><strong>Fachkräfte</strong>für eine Anstellung</span></label>
+              <label class="choice__item" for="f-suche-2"><input id="f-suche-2" type="radio" name="gesucht" value="Auszubildende (Ausbildung)" required><span><strong>Auszubildende</strong>für eine Ausbildung</span></label>
+              <label class="choice__item" for="f-suche-3"><input id="f-suche-3" type="radio" name="gesucht" value="Beides" required><span><strong>Beides</strong>Arbeit und Ausbildung</span></label>
+            </div>
+            <p class="field__error">Bitte wählen Sie, ob Sie Fachkräfte oder Auszubildende suchen.</p>
+          </fieldset>
           <div class="field">
             <label for="f-art">Art des Unternehmens <span class="req" aria-hidden="true">*</span></label>
             <select id="f-art" name="unternehmensart" required>
