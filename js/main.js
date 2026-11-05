@@ -223,8 +223,8 @@
 
     /* Supabase: Anfragen werden in der Tabelle "partner_anfragen" gespeichert.
        Der Publishable Key ist öffentlich; die Tabelle erlaubt der Website nur das Anlegen, nie das Lesen. */
-    var SUPABASE_URL = 'https://pqwjtgqkkpcgadlqroid.supabase.co';
-    var SUPABASE_KEY = 'sb_publishable_a2x_8Z4PTXBK6RfVYcT0jQ_Ghl854Hc';
+    var SUPABASE_URL = 'https://bxlkwieosclmmpxzgamp.supabase.co';
+    var SUPABASE_KEY = 'sb_publishable_LK1a66KrAIspSkkrDuEVtw_Dkj2yxOn';
     var SUPABASE_TABLE = 'partner_anfragen';
 
     function validateField(el) {
