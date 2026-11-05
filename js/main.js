@@ -221,6 +221,12 @@
     var fields = $$('input[required], select[required], textarea[required]', form);
     var MAIL = 'hello@europassacademy.com';
 
+    /* Supabase: Anfragen werden in der Tabelle "partner_anfragen" gespeichert.
+       Der Publishable Key ist öffentlich; die Tabelle erlaubt der Website nur das Anlegen, nie das Lesen. */
+    var SUPABASE_URL = 'https://pqwjtgqkkpcgadlqroid.supabase.co';
+    var SUPABASE_KEY = 'sb_publishable_a2x_8Z4PTXBK6RfVYcT0jQ_Ghl854Hc';
+    var SUPABASE_TABLE = 'partner_anfragen';
+
     function validateField(el) {
       var wrap = el.closest('.field');
       var ok = el.type === 'checkbox' ? el.checked : (el.value.trim() !== '' && el.checkValidity());
@@ -246,6 +252,8 @@
         'Unternehmen: ' + (d.unternehmen || ''),
         'Ansprechpartner: ' + (d.ansprechpartner || ''),
         'E-Mail: ' + (d.email || ''),
+        'Telefon: ' + (d.telefon || ''),
+        'Gesucht: ' + (d.gesucht || ''),
         'Art des Unternehmens: ' + (d.unternehmensart || ''),
         'Berufsfeld: ' + (d.berufsfeld || ''),
         '',
@@ -278,8 +286,19 @@
       var data = collect();
       if (data.website) { form.reset(); return; } /* Spam-Schutz (Honeypot) */
 
-      var endpoint = form.getAttribute('data-endpoint');
-      if (!endpoint) { fallback(data, 'Das Formular ist noch nicht mit einem Server verbunden.'); return; }
+      /* Nur die Spalten senden, die es in Supabase gibt */
+      var record = {
+        unternehmen: data.unternehmen,
+        ansprechpartner: data.ansprechpartner,
+        email: data.email,
+        telefon: data.telefon ? data.telefon : null,
+        gesucht: data.gesucht,
+        unternehmensart: data.unternehmensart,
+        berufsfeld: data.berufsfeld,
+        nachricht: data.nachricht,
+        einwilligung: data.einwilligung === 'ja'
+      };
+      var endpoint = SUPABASE_URL + '/rest/v1/' + SUPABASE_TABLE;
 
       submit.disabled = true;
       var label = submit.textContent;
@@ -291,18 +310,22 @@
 
       fetch(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(record),
         signal: controller ? controller.signal : undefined
       }).then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (json) { return { res: res, json: json }; });
       }).then(function (r) {
-        if (r.res.ok && r.json && r.json.ok === true) {
+        if (r.res.ok) {
           form.reset();
           $$('.field.is-invalid', form).forEach(function (f) { f.classList.remove('is-invalid'); });
           setStatus('success', '<strong>Vielen Dank, Ihre Anfrage ist bei uns eingegangen.</strong>Wir melden uns in der Regel innerhalb von zwei Werktagen, um einen Termin für ein Online-Erstgespräch abzustimmen.');
         } else {
-          fallback(data, (r.json && r.json.error) ? r.json.error : 'Ihre Anfrage konnte gerade nicht gesendet werden.');
+          fallback(data, 'Ihre Anfrage konnte gerade nicht gesendet werden.');
         }
       }).catch(function () {
         fallback(data, 'Ihre Anfrage konnte gerade nicht gesendet werden.');
