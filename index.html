@@ -1,4 +1,22 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style>
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Europass Academy – Fachkräfte und Auszubildende aus Marokko</title>
+<meta name="description" content="Europass Academy ist Ihr Bildungs- und Vorbereitungspartner in Marokko: Kandidatenauswahl, Deutsch A1–B2, berufliche Vorbereitung und persönliche Begleitung für deutsche Arbeitgeber.">
+<meta name="theme-color" content="#0B1A33">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Europass Academy – Ihr Partner vor Ort in Marokko">
+<meta property="og:description" content="Internationale Fachkräfte und Auszubildende aus Marokko – vorbereitet, vorausgewählt und persönlich begleitet.">
+<meta property="og:image" content="assets/img/poster-hero.jpg">
+<meta property="og:locale" content="de_DE">
+<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="stylesheet" href="css/main.css">
+<script>document.documentElement.classList.add('js');</script>
+<style>
 /* Formular: Telefon + Auswahl Arbeit/Ausbildung */
 .opt { font-weight: 400; color: var(--muted); }
 .field input[type="tel"] { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #B9C3D3; border-radius: 2px; background: var(--white); font-size: 1rem; color: var(--ink); transition: border-color .2s, box-shadow .2s; }
@@ -17,22 +35,21 @@
 .choice__item input:focus-visible + span { outline: 3px solid var(--red); outline-offset: 2px; }
 .choice.is-invalid .choice__item span { border-color: var(--red); }
 @media (max-width: 640px) { .choice__row { grid-template-columns: minmax(0, 1fr); } .choice__item span { min-height: 0; } }
+
+/* Einwilligungs-Banner (Google Analytics) */
+.cookie-banner[hidden] { display: none !important; }
+.cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--white); color: var(--ink); border-top: 3px solid var(--blue); box-shadow: 0 -12px 40px rgba(11,26,51,0.18); padding: 20px max(16px, env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.cookie-banner__inner { max-width: 1232px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
+.cookie-banner__text { flex: 1 1 520px; min-width: 0; font-size: 0.9375rem; line-height: 1.55; color: var(--muted); }
+.cookie-banner__title { font-family: var(--font-display); font-weight: 650; font-size: 1.0625rem; color: var(--ink); margin-bottom: 4px; }
+.cookie-banner__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.cookie-banner__actions .btn { min-width: 140px; }
+.footer-link { background: none; border: 0; padding: 0; min-height: 44px; color: var(--white); font: inherit; cursor: pointer; text-align: left; }
+.footer-link:hover { text-decoration: underline; }
+@media (max-width: 640px) { .cookie-banner__actions { width: 100%; } .cookie-banner__actions .btn { flex: 1 1 0; min-width: 0; } }
 </style>
-</head><body>
-<title>Europass Academy Landingpage</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Europass Academy ist Ihr Bildungs- und Vorbereitungspartner in Marokko: Kandidatenauswahl, Deutsch A1–B2, berufliche Vorbereitung und persönliche Begleitung für deutsche Arbeitgeber.">
-<meta name="theme-color" content="#0B1A33">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Europass Academy – Ihr Partner vor Ort in Marokko">
-<meta property="og:description" content="Internationale Fachkräfte und Auszubildende aus Marokko – vorbereitet, vorausgewählt und persönlich begleitet.">
-<meta property="og:image" content="assets/img/poster-hero.jpg">
-<meta property="og:locale" content="de_DE">
-<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="assets/img/favicon.png" type="image/png">
-<link rel="stylesheet" href="css/main.css">
-<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
 <!-- ============ HEADER ============ -->
@@ -502,7 +519,7 @@
     </div>
 
     <div class="form-card">
-      <form class="form" id="kontaktformular" data-form data-endpoint="https://pqwjtgqkkpcgadlqroid.supabase.co/rest/v1/partner_anfragen" novalidate>
+      <form class="form" id="kontaktformular" data-form data-endpoint="https://bxlkwieosclmmpxzgamp.supabase.co/rest/v1/partner_anfragen" novalidate>
         <h3 class="form__title">Kooperationsanfrage</h3>
         <div class="form__grid">
           <div class="field">
@@ -605,13 +622,27 @@
       <a href="https://www.europassacademy.com" rel="noopener">europassacademy.com</a>
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
+      <button type="button" class="footer-link" data-consent-open>Cookie-Einstellungen</button>
     </nav>
     <p class="site-footer__copy">© <span data-year>2026</span> Europass Academy</p>
   </div>
 </footer>
 
+<div class="cookie-banner" role="region" aria-labelledby="consent-title" data-consent hidden>
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__text">
+      <p class="cookie-banner__title" id="consent-title">Ihre Datenschutz-Einstellungen</p>
+      <p>Mit Ihrer Einwilligung nutzen wir Google Analytics, um zu verstehen, wie Besucher unsere Website verwenden. Dabei werden Cookies gesetzt und Nutzungsdaten an Google übermittelt, auch in die USA. Ihre Auswahl können Sie jederzeit über „Cookie-Einstellungen“ im Seitenfuß ändern. <a href="datenschutz.html#analyse">Mehr in der Datenschutzerklärung</a></p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn--blue btn--sm" data-consent-accept>Akzeptieren</button>
+      <button type="button" class="btn btn--blue btn--sm" data-consent-decline>Ablehnen</button>
+    </div>
+  </div>
+</div>
+
 <a class="mobile-cta" href="#kontakt" data-mobile-cta>Kooperationsgespräch vereinbaren</a>
 
 <script src="js/main.js" defer></script>
-
-</body></html>
+</body>
+</html>
