@@ -7,6 +7,51 @@
   var $ = function (sel, root) { return (root || doc).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || doc).querySelectorAll(sel)); };
 
+  /* ---------- Google Analytics – nur nach Einwilligung (DSGVO / TDDDG) ---------- */
+  var GA_ID = 'G-22NYWLYL8C';
+  var CONSENT_KEY = 'ea-analytics-consent';
+  var gaLoaded = false;
+  function readConsent() { try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; } }
+  function saveConsent(v) { try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {} }
+  function loadAnalytics() {
+    window['ga-disable-' + GA_ID] = false;
+    if (gaLoaded) { window.gtag('consent', 'update', { analytics_storage: 'granted' }); return; }
+    gaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID, { anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false });
+    var s = doc.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    doc.head.appendChild(s);
+  }
+  function stopAnalytics() {
+    window['ga-disable-' + GA_ID] = true;
+    if (window.gtag) window.gtag('consent', 'update', { analytics_storage: 'denied' });
+    /* Bereits gesetzte Analytics-Cookies entfernen */
+    var host = location.hostname, parts = host.split('.'), domains = [''];
+    for (var i = 0; i < parts.length - 1; i++) domains.push('; domain=.' + parts.slice(i).join('.'));
+    doc.cookie.split(';').forEach(function (c) {
+      var name = c.split('=')[0].trim();
+      if (/^_ga/.test(name)) domains.forEach(function (d) { doc.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + d; });
+    });
+  }
+  window.eaTrack = function (name, params) { if (gaLoaded && readConsent() === 'granted' && window.gtag) window.gtag('event', name, params || {}); };
+
+  var banner = doc.querySelector('[data-consent]');
+  function showBanner() { if (!banner) return; banner.hidden = false; var b = banner.querySelector('[data-consent-accept]'); if (b) b.focus({ preventScroll: true }); }
+  function hideBanner() { if (banner) banner.hidden = true; }
+  if (banner) {
+    banner.querySelector('[data-consent-accept]').addEventListener('click', function () { saveConsent('granted'); hideBanner(); loadAnalytics(); });
+    banner.querySelector('[data-consent-decline]').addEventListener('click', function () { saveConsent('denied'); hideBanner(); stopAnalytics(); });
+  }
+  doc.querySelectorAll('[data-consent-open]').forEach(function (el) { el.addEventListener('click', showBanner); });
+  var consent = readConsent();
+  if (consent === 'granted') loadAnalytics();
+  else if (consent !== 'denied' && banner) banner.hidden = false;
+
   /* ---------- Jahr im Footer ---------- */
   $$('[data-year]').forEach(function (el) { el.textContent = String(new Date().getFullYear()); });
 
@@ -321,6 +366,7 @@
         return res.json().catch(function () { return {}; }).then(function (json) { return { res: res, json: json }; });
       }).then(function (r) {
         if (r.res.ok) {
+          window.eaTrack('generate_lead', { form_name: 'kooperationsanfrage', gesucht: record.gesucht, berufsfeld: record.berufsfeld });
           form.reset();
           $$('.field.is-invalid', form).forEach(function (f) { f.classList.remove('is-invalid'); });
           setStatus('success', '<strong>Vielen Dank, Ihre Anfrage ist bei uns eingegangen.</strong>Wir melden uns in der Regel innerhalb von zwei Werktagen, um einen Termin für ein Online-Erstgespräch abzustimmen.');
