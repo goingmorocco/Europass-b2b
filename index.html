@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0B1A33">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Europass Academy – Ihr Partner vor Ort in Marokko">
-<meta property="og:description" content="Internationale Fachkräfte und Auszubildende aus Marokko – vorbereitet, vorausgewählt und persönlich begleitet.">
+<meta property="og:description" content="Offene Stellen besetzen – mit Auszubildenden und Fachkräften aus Marokko, die schon Deutsch lernen. Vorausgewählt, vorbereitet, persönlich begleitet. Für Arbeitgeber kostenfrei.">
 <meta property="og:image" content="assets/img/poster-hero.jpg">
 <meta property="og:locale" content="de_DE">
 <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -47,6 +47,69 @@
 .footer-link { background: none; border: 0; padding: 0; min-height: 44px; color: var(--white); font: inherit; cursor: pointer; text-align: left; }
 .footer-link:hover { text-decoration: underline; }
 @media (max-width: 640px) { .cookie-banner__actions { width: 100%; } .cookie-banner__actions .btn { flex: 1 1 0; min-width: 0; } }
+
+/* Kopfzeile: Servicezeile + Hauptnavigation für Arbeitgeber */
+.topbar { display: none; }
+.site-nav__actions { display: flex; align-items: center; gap: 10px; }
+.btn--ghost { border-color: rgba(255,255,255,0.55); color: var(--white); background: transparent; }
+.btn--ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.08); color: var(--white); }
+.site-header.is-solid .btn--ghost { border-color: var(--blue); color: var(--blue); }
+.site-header.is-solid .btn--ghost:hover { background: var(--blue-tint); color: var(--blue-deep); }
+.site-nav__extra { display: none; }
+@media (min-width: 961px) {
+  :root { --header-h: 116px; }
+  .topbar { display: block; max-height: 40px; overflow: hidden; border-bottom: 1px solid var(--line-dark); transition: max-height .3s var(--ease), opacity .25s var(--ease), border-color .3s var(--ease); }
+  .topbar__inner { max-width: calc(var(--max) + var(--gutter) + var(--gutter-r)); margin-inline: auto; padding: 0 var(--gutter-r) 0 var(--gutter); height: 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; font-size: 0.8125rem; color: var(--on-dark-soft); }
+  .topbar__claim { display: flex; align-items: center; gap: 10px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topbar__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex: none; }
+  .topbar__links { display: flex; flex: none; }
+  .topbar__links li + li { border-left: 1px solid var(--line-dark); }
+  .topbar__links a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; color: var(--white); text-decoration: none; font-weight: 500; }
+  .topbar__links li:last-child a { padding-right: 0; }
+  .topbar__links a:hover { color: var(--white); text-decoration: underline; }
+  .site-header.is-solid .topbar { max-height: 0; opacity: 0; border-color: transparent; }
+  .site-nav__list { gap: clamp(14px, 1.9vw, 28px); }
+}
+@media (min-width: 961px) and (max-width: 1180px) {
+  .nav-opt, .topbar__links li:last-child { display: none; }
+  .topbar__links li:nth-last-child(2) a { padding-right: 0; }
+}
+@media (max-width: 960px) {
+  .site-nav__actions { flex-direction: column; align-items: stretch; margin-top: 16px; }
+  .site-nav .site-nav__actions .btn { margin-top: 0; }
+  .btn--ghost, .site-header.is-solid .btn--ghost { border-color: var(--blue); color: var(--blue); }
+  .site-nav__extra { display: grid; margin-top: 14px; }
+  .site-nav__extra a { display: flex; align-items: center; min-height: 48px; color: var(--muted); text-decoration: none; font-size: 0.9375rem; border-bottom: 1px solid var(--line); }
+}
+
+/* Hero: Hervorhebung */
+.hero__em { font-style: normal; box-shadow: inset 0 -0.12em 0 var(--red); }
+.hero__lead strong { color: var(--white); font-weight: 600; }
+
+/* Footer: Spalten + Rechtliches */
+.site-footer { padding-top: clamp(56px, 6vw, 80px); }
+.ft-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: 40px 48px; padding-bottom: 40px; border-bottom: 1px solid var(--line-dark); }
+.ft-brand { display: grid; gap: 16px; align-content: start; max-width: 360px; }
+.ft-brand img { width: 168px; height: auto; }
+.ft-brand p { line-height: 1.55; }
+.ft-brand address { font-style: normal; line-height: 1.55; color: var(--on-dark); }
+.ft-title { font-family: var(--font-mono); font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--on-dark-soft); margin-bottom: 12px; }
+.ft-col ul { display: grid; }
+.ft-col a:not(.btn) { color: var(--white); text-decoration: none; display: inline-flex; align-items: center; min-height: 36px; }
+.ft-col a:not(.btn):hover { color: var(--white); text-decoration: underline; }
+.ft-cta { margin-top: 18px; }
+.ft-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 24px; padding-top: 12px; }
+.ft-legal { display: flex; flex-wrap: wrap; gap: 0 24px; }
+.ft-legal a, .ft-legal .footer-link { color: var(--on-dark); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.ft-legal a:hover, .ft-legal .footer-link:hover { color: var(--white); text-decoration: underline; }
+@media (max-width: 1000px) { .ft-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ft-brand { grid-column: 1 / -1; max-width: 560px; } }
+@media (max-width: 640px) {
+  .ft-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
+  .ft-brand, .ft-grid > .ft-col:last-child { grid-column: 1 / -1; }
+  .ft-col a:not(.btn) { min-height: 44px; }
+  .ft-cta { width: 100%; }
+  .ft-bottom { flex-direction: column-reverse; align-items: flex-start; }
+}
 </style>
 </head>
 <body>
@@ -54,6 +117,16 @@
 
 <!-- ============ HEADER ============ -->
 <header class="site-header" data-header>
+  <div class="topbar">
+    <div class="topbar__inner">
+      <p class="topbar__claim"><span class="topbar__dot" aria-hidden="true"></span>Auszubildende und Fachkräfte aus Marokko · für Arbeitgeber kostenfrei</p>
+      <ul class="topbar__links" aria-label="Weitere Zugänge">
+        <li><a href="https://crm.europassacademy.de/portail/?lang=de">Für Bewerber:innen</a></li>
+        <li><a href="https://crm.europassacademy.de/" rel="nofollow">Partner-Login</a></li>
+        <li><a href="mailto:hello@europassacademy.com">hello@europassacademy.com</a></li>
+      </ul>
+    </div>
+  </div>
   <div class="site-header__inner">
     <a class="brand" href="#top" aria-label="Europass Academy – zum Seitenanfang">
       <picture class="brand__logo brand__logo--light">
@@ -71,15 +144,20 @@
     </button>
     <nav class="site-nav" id="site-nav" aria-label="Hauptnavigation" data-nav>
       <ul class="site-nav__list">
-        <li><a href="#akademie">Akademie</a></li>
+        <li><a href="#akademie">Über uns</a></li>
         <li><a href="#leistungen">Leistungen</a></li>
         <li><a href="#berufsfelder">Berufsfelder</a></li>
         <li><a href="#ablauf">Ablauf</a></li>
-        <li><a href="#einblicke">Einblicke</a></li>
-        <li><a href="https://crm.europassacademy.de/talente/">Talent-Pool</a></li>
-        <li><a href="#zugaenge">Für Bewerber:innen</a></li>
+        <li class="nav-opt"><a href="#einblicke">Einblicke</a></li>
       </ul>
-      <a class="btn btn--red btn--sm" href="#kontakt">Gespräch vereinbaren</a>
+      <div class="site-nav__actions">
+        <a class="btn btn--ghost btn--sm" href="https://crm.europassacademy.de/talente/">Talent-Pool</a>
+        <a class="btn btn--red btn--sm" href="#kontakt">Gespräch vereinbaren</a>
+      </div>
+      <ul class="site-nav__extra" aria-label="Weitere Zugänge">
+        <li><a href="https://crm.europassacademy.de/portail/?lang=de">Für Bewerber:innen – Bewerberportal</a></li>
+        <li><a href="https://crm.europassacademy.de/" rel="nofollow">Partner-Login (CRM)</a></li>
+      </ul>
     </nav>
   </div>
 </header>
@@ -90,11 +168,11 @@
 <section class="hero" id="top" aria-labelledby="hero-title">
   <div class="wrap hero__intro">
     <div class="hero__head">
-      <p class="eyebrow eyebrow--light"><span class="eyebrow__mark" aria-hidden="true"></span>Partner für deutsche Arbeitgeber</p>
+      <p class="eyebrow eyebrow--light"><span class="eyebrow__mark" aria-hidden="true"></span>Für Arbeitgeber in Deutschland</p>
       <h1 class="hero__title" id="hero-title">
-        <span class="hero__line">Internationale Fachkräfte</span>
-        <span class="hero__line">und Auszubildende</span>
-        <span class="hero__line">aus Marokko<span class="hero__dot">.</span></span>
+        <span class="hero__line">Offene Stellen besetzen –</span>
+        <span class="hero__line">mit Talenten, die schon</span>
+        <span class="hero__line"><em class="hero__em">Deutsch</em> lernen<span class="hero__dot">.</span></span>
       </h1>
     </div>
   </div>
@@ -107,7 +185,7 @@
     </div>
 
     <div class="hero__aside">
-      <p class="hero__lead">Ihr zuverlässiger Partner vor Ort – von der Kandidatenauswahl über die Sprachvorbereitung bis zur persönlichen Begleitung.</p>
+      <p class="hero__lead">Wir finden, prüfen und bereiten <strong>Auszubildende und Fachkräfte</strong> an fünf Standorten in Marokko auf Ihren Betrieb vor – mit Deutsch bis B2. <strong>Für Sie als Arbeitgeber kostenfrei.</strong></p>
       <div class="btn-row">
         <a class="btn btn--red" href="#kontakt">Kooperationsgespräch vereinbaren<svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn--outline-light" href="#akademie">Europass Academy kennenlernen</a>
@@ -655,24 +733,52 @@
 
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
-  <div class="wrap site-footer__inner">
-    <div class="site-footer__brand">
-      <picture>
-        <source srcset="assets/img/europass-logo-white.webp" type="image/webp">
-        <img src="assets/img/europass-logo-white.png" alt="Europass Academy" width="168" height="40" loading="lazy">
-      </picture>
-      <address>Bureaux Al-Atiq, Avenue Hassan I<br>Khemisset, Marokko</address>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <picture>
+          <source srcset="assets/img/europass-logo-white.webp" type="image/webp">
+          <img src="assets/img/europass-logo-white.png" alt="Europass Academy" width="168" height="40" loading="lazy">
+        </picture>
+        <p>Ihr Bildungs- und Vorbereitungspartner in Marokko: Auszubildende und Fachkräfte mit Deutsch A1–B2 – für deutsche Arbeitgeber kostenfrei.</p>
+        <address>Bureaux Al-Atiq, Avenue Hassan I<br>Khemisset, Marokko</address>
+      </div>
+      <nav class="ft-col" aria-label="Für Arbeitgeber">
+        <p class="ft-title">Für Arbeitgeber</p>
+        <ul>
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#berufsfelder">Berufsfelder</a></li>
+          <li><a href="#ablauf">Ablauf der Zusammenarbeit</a></li>
+          <li><a href="#kooperation">Kooperationsmodelle</a></li>
+          <li><a href="https://crm.europassacademy.de/talente/">Talent-Pool</a></li>
+        </ul>
+      </nav>
+      <nav class="ft-col" aria-label="Zugänge">
+        <p class="ft-title">Zugänge</p>
+        <ul>
+          <li><a href="https://crm.europassacademy.de/portail/?lang=de">Bewerberportal</a></li>
+          <li><a href="https://crm.europassacademy.de/" rel="nofollow">Partner-Login (CRM)</a></li>
+          <li><a href="https://www.europassacademy.com" rel="noopener">europassacademy.com</a></li>
+        </ul>
+      </nav>
+      <div class="ft-col">
+        <p class="ft-title">Kontakt</p>
+        <ul>
+          <li><a href="mailto:hello@europassacademy.com">hello@europassacademy.com</a></li>
+          <li><a href="tel:+212694236609">+212 694 236 609</a></li>
+          <li><a href="https://wa.me/212694236609" rel="noopener">WhatsApp schreiben</a></li>
+        </ul>
+        <a class="btn btn--red btn--sm ft-cta" href="#kontakt">Gespräch vereinbaren</a>
+      </div>
     </div>
-    <nav class="site-footer__nav" aria-label="Rechtliches und weitere Links">
-      <a href="https://www.europassacademy.com" rel="noopener">europassacademy.com</a>
-      <a href="https://crm.europassacademy.de/talente/">Talent-Pool</a>
-      <a href="https://crm.europassacademy.de/portail/?lang=de">Bewerberportal</a>
-      <a href="https://crm.europassacademy.de/" rel="nofollow">Partner-Login</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-      <button type="button" class="footer-link" data-consent-open>Cookie-Einstellungen</button>
-    </nav>
-    <p class="site-footer__copy">© <span data-year>2026</span> Europass Academy</p>
+    <div class="ft-bottom">
+      <p>© <span data-year>2026</span> Europass Academy</p>
+      <ul class="ft-legal" aria-label="Rechtliches">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+        <li><button type="button" class="footer-link" data-consent-open>Cookie-Einstellungen</button></li>
+      </ul>
+    </div>
   </div>
 </footer>
 
