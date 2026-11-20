@@ -56,6 +56,10 @@
 .site-header.is-solid .btn--ghost { border-color: var(--blue); color: var(--blue); }
 .site-header.is-solid .btn--ghost:hover { background: var(--blue-tint); color: var(--blue-deep); }
 .site-nav__extra { display: none; }
+.btn--candidat { background: var(--white); border-color: var(--white); color: var(--blue-deep); }
+.btn--candidat:hover { background: var(--blue-tint); border-color: var(--blue-tint); color: var(--blue-deep); }
+.site-header.is-solid .btn--candidat { background: var(--blue); border-color: var(--blue); color: var(--white); }
+.site-header.is-solid .btn--candidat:hover { background: var(--blue-deep); border-color: var(--blue-deep); color: var(--white); }
 @media (min-width: 961px) {
   :root { --header-h: 116px; }
   .topbar { display: block; max-height: 40px; overflow: hidden; border-bottom: 1px solid var(--line-dark); transition: max-height .3s var(--ease), opacity .25s var(--ease), border-color .3s var(--ease); }
@@ -78,6 +82,7 @@
   .site-nav__actions { flex-direction: column; align-items: stretch; margin-top: 16px; }
   .site-nav .site-nav__actions .btn { margin-top: 0; }
   .btn--ghost, .site-header.is-solid .btn--ghost { border-color: var(--blue); color: var(--blue); }
+  .btn--candidat, .site-header.is-solid .btn--candidat { background: var(--blue); border-color: var(--blue); color: var(--white); }
   .site-nav__extra { display: grid; margin-top: 14px; }
   .site-nav__extra a { display: flex; align-items: center; min-height: 48px; color: var(--muted); text-decoration: none; font-size: 0.9375rem; border-bottom: 1px solid var(--line); }
 }
@@ -152,6 +157,7 @@
       </ul>
       <div class="site-nav__actions">
         <a class="btn btn--ghost btn--sm" href="https://crm.europassacademy.de/talente/">Talent-Pool</a>
+        <a class="btn btn--candidat btn--sm" href="https://crm.europassacademy.de/portail/?lang=fr" title="Bewerberportal für Kandidat:innen – auf Französisch, Arabisch und Deutsch" translate="no">Postuler · Bewerben</a>
         <a class="btn btn--red btn--sm" href="#kontakt">Gespräch vereinbaren</a>
       </div>
       <ul class="site-nav__extra" aria-label="Weitere Zugänge">
